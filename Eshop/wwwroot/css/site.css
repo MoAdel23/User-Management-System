@@ -1,0 +1,47 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+/*Custome Style*/
+
+li a:hover {
+    color: darkorange !important; /* Use !important to override Bootstrap styles */
+}
+
+.btn-link:hover {
+    color: tomato !important; /* Use !important to override Bootstrap styles */
+}
+
+.profile-picture {
+    display: block;
+    margin: 5px auto;
+    width: 250px;
+    height: 260px;
+    object-fit: cover;
+}
+
+.avatar {
+    width:40px;
+    height:40px;
+    object-fit:cover;
+}

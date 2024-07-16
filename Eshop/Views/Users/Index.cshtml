@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Users";
+}
+
+<h1>Users</h1>
+
+@model IEnumerable<UserViewModel>
+
+    <a asp-action="Add" class="btn btn-primary">Add New</a>
+<table class="table table-striped mt-4">
+    <thead>
+        <tr class="bg-primary text-white">
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>User Name</td>
+            <td>Email</td>
+
+            <td>Roles</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@string.Join(" , ", user.Roles.ToList())</td>
+                <td>
+
+                    @* <a class="btn btn-primary btn-sm" asp-controller="Users" asp-action="Edit" asp-route-userId="@user.Id" >
+                        <i class="fas fa-folder">
+                        </i>
+                        View
+                    </a>
+ *@
+                    <a class="btn btn-info btn-sm" asp-controller="Users" asp-action="Edit" asp-route-userId="@user.Id">
+                        <i class="fas fa-pencil-alt">
+                        </i>
+                        Edit
+                    </a>
+                    <a class="btn btn-info btn-sm" asp-controller="Users" asp-action="ManageRoles" asp-route-userId="@user.Id">
+                        <i class="fas fa-pencil-alt">
+                        </i>
+                        Manage
+                    </a>
+
+                    <a class="btn btn-danger btn-sm" onclick='DeleteItem( id = "@user.Id")'>
+                        <i class="fas fa-trash">
+                        </i>
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@section Scripts {
+    <script src="~/js/user.js"></script>
+}

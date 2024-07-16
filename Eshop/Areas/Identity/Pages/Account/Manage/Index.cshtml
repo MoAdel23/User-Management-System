@@ -1,0 +1,108 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+
+
+    var profileImage = (Model.Input.ProfilePicture != null)
+                        ? $"data:image/*;base64,{(Convert.ToBase64String(Model.Input.ProfilePicture))}"
+                        : "/Images/profile.png";
+}
+
+<h3>@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+<form id="profile-form" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.FirstName" class="form-control" placeholder="Please choose your first name." />
+                <label asp-for="Input.FirstName" class="form-label"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.LastName" class="form-control" placeholder="Please choose your last name." />
+                <label asp-for="Input.LastName" class="form-label"></label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Username" class="form-control" placeholder="Please choose your username." disabled />
+                <label asp-for="Username" class="form-label"></label>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Please enter your phone number." />
+                <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="Input.ProfilePicture" class="form-label w-100"></label>
+            <img id="profilePicture" class="profile-picture" alt="profile" src="@profileImage" />
+
+
+            <div class="input-group mb-3">
+                <input type="file"
+                       accept="image/*"
+                       asp-for="Input.ProfilePicture"
+                       class="form-control"
+                       onchange="ShowImage(this,imgsrc = '@profileImage') " />
+                <label class="input-group-text" asp-for="Input.ProfilePicture">Browse</label>
+            </div>
+
+
+        </div>
+    </div>
+</form>
+
+@section Styles {
+    <link href="~/lib/tostr/toastr.min.css" rel="stylesheet" />
+}
+
+@section Scripts {
+   
+    
+    @* Tostr 
+       https://github.com/CodeSeven/toastr?tab=readme-ov-file
+    *@
+    <script src="~/lib/tostr/toastr.min.js"></script>
+    
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function ShowImage(e, imgsrc) {
+            var image = window.document.getElementById('profilePicture');
+
+            if (e.value == '') {  
+                image.src = imgsrc;
+                toastr["error"]("No Image file  uploaded ", "Profile Picture");
+            } else {
+                imgsrc = window.URL.createObjectURL(e.files[0]);
+                image.src = imgsrc;
+                toastr["success"]("Image file has been uploaded successfuly", "Profile Picture");
+            }
+        }
+        // var storeIamge = image.src;
+        // console.log(imgsrc);
+        // console.log(e.files[0]);
+        // console.log(e.value == '');
+
+
+
+        // if (e.files[0] != undefined) {
+        //     newImageSrc = window.URL.createObjectURL(e.files[0]);
+        //     image.src = newImageSrc;
+        // } else {
+
+        //     image.src = newImageSrc;
+        // }
+        // console.log(newImageSrc);
+    </script>
+    
+
+}
