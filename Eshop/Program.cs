@@ -27,7 +27,8 @@ public class Program
 
         // Add Identity services
         // Registere ApplicationUser , IdentityRole
-        builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+        builder.Services.AddIdentity<ApplicationUser, IdentityRole>( )
+            //options => options.SignIn.RequireConfirmedEmail = true) // Confirm Email
             // configures Identity to use Entity Framework Core as the data store and specifies ApplicationDbContext as the context class
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultUI()

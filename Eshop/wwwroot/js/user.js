@@ -59,7 +59,8 @@
 //}
 
 
-function DeleteItem(id) {
+function DeleteItem(e,id) {
+   
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: "btn btn-success",
@@ -101,11 +102,16 @@ function DeleteItem(id) {
             /* Read more about handling dismissals below */
             result.dismiss === Swal.DismissReason.cancel
         ) {
-            swalWithBootstrapButtons.fire({
-                title: "Cancelled",
-                text: "Your imaginary file is safe :>>",
-                icon: "error"
-            });
+            //swalWithBootstrapButtons.fire({
+            //    title: "Cancelled",
+            //    text: "Your imaginary file is safe :>>",
+            //    icon: "error"
+            //});
+
+            setTimeout(function () {
+                toastr.info('Your imaginary data is safe :>>');
+            }, 1000);
+
         }
     });
 } 

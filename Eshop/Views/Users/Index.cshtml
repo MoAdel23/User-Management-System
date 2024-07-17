@@ -1,12 +1,16 @@
-﻿@{
+﻿@model IEnumerable<UserViewModel>
+@{
     ViewData["Title"] = "Users";
 }
 
 <h1>Users</h1>
+<a asp-action="Add" class="btn btn-primary">Add New</a>
 
-@model IEnumerable<UserViewModel>
 
-    <a asp-action="Add" class="btn btn-primary">Add New</a>
+<div id="alert" class="alert alert-success mt-4" role="alert" style="display:none">
+  user deleted
+</div>
+
 <table class="table table-striped mt-4">
     <thead>
         <tr class="bg-primary text-white">
@@ -42,16 +46,22 @@
                         </i>
                         Edit
                     </a>
-                    <a class="btn btn-info btn-sm" asp-controller="Users" asp-action="ManageRoles" asp-route-userId="@user.Id">
+                    <a class="btn btn-outline-secondary btn-sm" asp-controller="Users" asp-action="ManageRoles" asp-route-userId="@user.Id">
                         <i class="fas fa-pencil-alt">
                         </i>
                         Manage
                     </a>
 
-                    <a class="btn btn-danger btn-sm" onclick='DeleteItem( id = "@user.Id")'>
+                    <a href="javascript:;" class="btn btn-danger btn-sm" onclick='DeleteItem( id = "@user.Id")'>
                         <i class="fas fa-trash">
                         </i>
                         Delete
+                    </a>
+
+                    <a href="javascript:;" class="btn btn-outline-danger btn-sm js-delete" data-id="@user.Id">
+                        <i class="fas fa-trash">
+                        </i>
+                        ApiDel
                     </a>
                 </td>
             </tr>
@@ -62,4 +72,7 @@
 
 @section Scripts {
     <script src="~/js/user.js"></script>
+    <script src="~/js/users.js"></script>
+
+   
 }
