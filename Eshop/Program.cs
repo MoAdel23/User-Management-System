@@ -1,7 +1,10 @@
 using Eshop.Data;
 using Eshop.Models;
+using Eshop.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace Eshop;
 
@@ -20,19 +23,27 @@ public class Program
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(connectionString));
 
-        // Add Razor Runtime Compilation
-        builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+       
         
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
         // Add Identity services
         // Registere ApplicationUser , IdentityRole
-        builder.Services.AddIdentity<ApplicationUser, IdentityRole>( )
-            //options => options.SignIn.RequireConfirmedEmail = true) // Confirm Email
+        builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+        {
+            options.SignIn.RequireConfirmedAccount = true;
+            options.SignIn.RequireConfirmedEmail = true;
+        }
+        ) // Confirm Email
             // configures Identity to use Entity Framework Core as the data store and specifies ApplicationDbContext as the context class
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultUI()
-            .AddDefaultTokenProviders();
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultUI()
+        .AddDefaultTokenProviders();
+
+        builder.Services.AddTransient<IEmailSender, EmailSender>();
+
+        // Add Razor Runtime Compilation
+        builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
         builder.Services.AddControllersWithViews();
 

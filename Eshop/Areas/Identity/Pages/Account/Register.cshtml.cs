@@ -139,8 +139,8 @@ public class RegisterModel : PageModel
 
 
 
-            // create Cookie
-            var result = await _userManager.CreateAsync(user, Input.Password);
+            // Create the user with the provided password
+            var result = await _userManager.CreateAsync(user, Input.Password); // Ensure Input.Password contains the user's password
 
             if (result.Succeeded)
             {

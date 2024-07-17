@@ -1,5 +1,0 @@
-bootstrap-icons.css 
-needs: 
-	#fonts:
- 	- bootstrap-icons.woff
- 	- bootstrap-icons.woff2
