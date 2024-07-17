@@ -10,12 +10,12 @@ This User Management System is built using ASP.NET Core MVC with Identity, Entit
 - **Clean Code Practices**
 - **Unit Testing**
 - **Responsive Design with Bootstrap**
-- **Interactive UI** with Toastr, SweetAlert, and DataTables
+- **Interactive UI** with Toastr, SweetAlert, DataTables and Bootbox
 
 ## Technologies Used
 - **Backend:** ASP.NET Core MVC, Identity, Entity Framework
 - **Frontend:** HTML, CSS, JavaScript, Bootstrap, jQuery
-- **Libraries:** Toastr, SweetAlert, DataTables
+- **Libraries:** Toastr, SweetAlert, DataTables ,Bootbox
 - **Database:** SQL Server
 
 
