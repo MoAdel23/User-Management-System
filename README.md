@@ -20,8 +20,8 @@ This User Management System is built using ASP.NET Core MVC with Identity, Entit
 
 
 ## Contact
-- **Resume:** [[https://moadel23.github.io/Resume/](https://drive.google.com/file/d/1LkV_SbOhF7f19zlx31JCLC4W6mROGILS/view?usp=sharing)]
-- **Email:** [ma7052012@gmail.com]
+- **Resume:** [[Mohamed Adel](https://drive.google.com/file/d/1LkV_SbOhF7f19zlx31JCLC4W6mROGILS/view?usp=sharing)]
+- **Email:** [[m.adel102023@gmail.com] (m.adel102023@gmail.com)]
 - **LinkedIn:** [https://www.linkedin.com/in/mohamed-adel-34b495256/]
 
 ---
